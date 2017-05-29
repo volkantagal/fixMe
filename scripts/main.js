@@ -1,28 +1,28 @@
 (function ($) {
   "use strict";
 
-  /*var defaultOptions = {
-    contentWidth: 960,
-    itemClass: '.categoryBanner',
-    gutter: 16
-  };*/
+  var defaultOptions = {
+    until: 'body'
+  };
 
   $.fn.fixMe = function (options) {
+    options = options ? options : defaultOptions;
     var $contentElement = this;
-    $.init($contentElement);
+    $.init($contentElement, options);
   };
 
-  $.init = function ($contentElement) {
-    $.setEvent($contentElement);
+  $.init = function ($contentElement, options) {
+    $.setEvent($contentElement, options);
   };
 
-  $.setEvent = function ($contentElement) {
+  $.setEvent = function ($contentElement, options) {
     var windowTopScroll = $(window).scrollTop();
     var windowTop = 0;
     var windowHeight = $(window).height();
     var contentTop = $contentElement.offset().top
     var direction = 'down';
     var paddingTop = 10;
+    var $untilElement = $(options.until);
 
     $(window).on('scroll', function () {
       windowTopScroll = $(window).scrollTop();
@@ -32,6 +32,8 @@
 
       if ($(window).scrollTop() < contentTop) {
         $contentElement.removeAttr('style');
+        return false;
+      } else if (windowTopScroll + windowHeight >= $untilElement.offset().top + $untilElement.outerHeight()) {
         return false;
       }
 
