@@ -1,0 +1,9 @@
+body {
+  height: 2500px;
+}
+
+.shouldFix {
+  width: 300px;
+  height: 1500px;
+  border: 2px solid blue;
+}
