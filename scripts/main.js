@@ -32,6 +32,7 @@
 
       if ($(window).scrollTop() < contentTop) {
         $contentElement.removeAttr('style');
+        return false;
       }
 
       if ($(window).scrollTop() + $(window).height() >= contentTop + $contentElement.outerHeight() && direction === 'down') {
