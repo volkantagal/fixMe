@@ -37,7 +37,7 @@
         return false;
       }
 
-      if ($(window).scrollTop() + $(window).height() >= contentTop + $contentElement.outerHeight() && direction === 'down') {
+      if ($(window).scrollTop() + $(window).height() >= $contentElement.offset().top + $contentElement.outerHeight() && direction === 'down') {
           $contentElement.css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + windowHeight - $contentElement.outerHeight() - 10});
       } else if ($(window).scrollTop() < $contentElement.offset().top && direction === 'up') {
           $contentElement.css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + paddingTop + 'px', 'bottom': 'initial' });
