@@ -31,16 +31,17 @@
       direction = windowTopScroll > windowTop ? 'down' : 'up';
 
       if ($(window).scrollTop() < contentTop) {
-        $contentElement.removeAttr('style');
+        $contentElement.removeAttr('style').removeClass('active');
         return false;
       } else if (windowTopScroll + windowHeight >= $untilElement.offset().top + $untilElement.outerHeight()) {
+        $contentElement.removeClass('active');
         return false;
       }
 
       if ($(window).scrollTop() + $(window).height() >= $contentElement.offset().top + $contentElement.outerHeight() && direction === 'down') {
-          $contentElement.css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + windowHeight - $contentElement.outerHeight() - 10});
+          $contentElement.addClass('fix').css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + windowHeight - $contentElement.outerHeight() - 10});
       } else if ($(window).scrollTop() < $contentElement.offset().top && direction === 'up') {
-          $contentElement.css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + paddingTop + 'px', 'bottom': 'initial' });
+          $contentElement.addClass('fix').css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + paddingTop + 'px', 'bottom': 'initial' });
       }
 
       windowTop = $(window).scrollTop();
