@@ -38,7 +38,9 @@
         return false;
       }
 
-      if ($(window).scrollTop() + $(window).height() >= $contentElement.offset().top + $contentElement.outerHeight() && direction === 'down') {
+      if ($(window).height() > $contentElement.outerHeight()) {
+          $contentElement.addClass('fix').css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + paddingTop + 'px', 'bottom': 'initial' });
+      } else if ($(window).scrollTop() + $(window).height() >= $contentElement.offset().top + $contentElement.outerHeight() && direction === 'down') {
           $contentElement.addClass('fix').css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + windowHeight - $contentElement.outerHeight() - 10});
       } else if ($(window).scrollTop() < $contentElement.offset().top && direction === 'up') {
           $contentElement.addClass('fix').css({ 'width': '224px', 'position': 'absolute', 'top': windowTopScroll + paddingTop + 'px', 'bottom': 'initial' });
